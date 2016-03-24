@@ -1,0 +1,187 @@
+A51 MACRO ASSEMBLER  SEG_EQU                                                              03/25/2016 07:26:58 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+OBJECT MODULE PLACED IN .\SEG_EQU.obj
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE ..\Lab2\SEG_EQU.asm SET(SMALL) DEBUG PRINT(.\SEG_EQU.lst) OBJECT(.\SEG_EQU
+                      .obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;#include "tx3703.inc"
+                +1     2     
+                +1     3     
+                +1     4     
+  0091          +1     5             P0OE    DATA    0x91
+  0092          +1     6             P4MOD   DATA    0x92
+  0093          +1     7             P2OE    DATA    0x93
+  0094          +1     8             OPTION  DATA    0x94
+  0095          +1     9             INTFLG  DATA    0x95
+  0096          +1    10             P1WKUP  DATA    0x96
+  0097          +1    11             SWCMD   DATA    0x97
+  009A          +1    12             PWM0PRD DATA    0x9A
+  009B          +1    13             PWM0DH  DATA    0x9B
+  009C          +1    14             PWM1PRD DATA    0x9C
+  009D          +1    15             PWM1DH  DATA    0x9D
+  00A1          +1    16             PWMCON  DATA    0xA1
+  00A2          +1    17             P1MODL  DATA    0xA2
+  00A3          +1    18             P1MODH  DATA    0xA3
+  00A4          +1    19             P3MODL  DATA    0xA4
+  00A5          +1    20             P3MODH  DATA    0xA5
+  00A6          +1    21             PINMOD  DATA    0xA6
+  00A9          +1    22             INTE1   DATA    0xA9
+  00AA          +1    23             ADTKDT  DATA    0xAA
+  00AB          +1    24             ADCDH   DATA    0xAB
+  00AC          +1    25             TKDL    DATA    0xAC
+  00AD          +1    26             TKCON   DATA    0xAD
+  00AE          +1    27             CHSEL   DATA    0xAE
+  00B1          +1    28             LCDCON  DATA    0xB1
+  00B2          +1    29             LCDCON2 DATA    0xB2
+  00B3          +1    30             LCDPIN  DATA    0xB3
+  00B9          +1    31             IPH             DATA    0xB9
+  00BA          +1    32             IP1             DATA    0xBA
+  00BB          +1    33             IP1H    DATA    0xBB
+  00BC          +1    34             SPCON   DATA    0xBC
+  00BD          +1    35             SPSTA   DATA    0xBD
+  00BE          +1    36             SPDAT   DATA    0xBE
+  00C0          +1    37             P5              DATA    0xC0
+  00C8          +1    38             T2CON   DATA    0xC8
+  00CA          +1    39             RCP2L   DATA    0xCA
+  00CB          +1    40             RCP2H   DATA    0xCB
+  00CC          +1    41             TL2             DATA    0xCC
+  00CD          +1    42             TH2             DATA    0xCD
+  00D8          +1    43             CLKCON  DATA    0xD8
+  00E8          +1    44             P4              DATA    0xE8
+  00F7          +1    45             CFGWL   DATA    0xF7
+  00F8          +1    46             AUX1    DATA    0xF8
+                      47     
+                      48     
+0000                  49             org 00h                 
+0000 810D             50             ajmp Start
+0400                  51             org 400h
+0400                  52     LED_Table:
+0400 C0               53             db 11000000b
+0401 F9               54             db 11111001b
+0402 A4               55             db 10100100b
+0403 B0               56             db 10110000b    
+0404 99               57             db 10011001b
+A51 MACRO ASSEMBLER  SEG_EQU                                                              03/25/2016 07:26:58 PAGE     2
+
+0405 92               58             db 10010010b
+0406 83               59             db 10000011b    
+0407 D8               60             db 11011000b
+0408 80               61             db 10000000b
+0409 98               62             db 10011000b
+                      63     
+                      64     
+                      65     
+040A 900400           66         MOV         DPTR,#LED_Table
+                      67             
+040D                  68     Start: 
+040D 7591FF           69                     mov p0oe,#11111111b
+0410 7593FF           70                     mov p2oe,#11111111b
+0413 75A0FE           71                     mov p2,#11111110b
+0416 7580FF           72                     mov p0,#11111111b       
+0419 85C080           73                     mov p0,11000000b
+                      74                     
+                      75     
+041C 900400           76                     MOV DPTR,#LED_Table                             
+041F                  77     S1:
+041F 7A0A             78                     mov r2,#10
+0421                  79     s2:
+0421 7400             80                     MOV A,#0
+                      81                     ;MOV B,#0
+0423 75A0FC           82                     MOV p2,#11111100b
+                      83                     ;MOV p2,#11111101b
+0426 93               84                     MOVC A,@A+DPTR
+                      85                     ;MOVC B,@B+DPTR
+0427 F580             86                     MOV p0,A
+0429 9139             87                     acall delay_1s
+042B A3               88                     inc DPTR
+042C DAF3             89                     djnz r2,s2
+                      90                     
+042E 810D             91                     ajmp Start
+                      92     
+0430                  93     delay_fast:
+0430 7D64             94             MOV R5,#100
+0432                  95       D1:   
+0432 7E19             96         MOV R6,#25
+0434 DEFE             97             DJNZ R6,$
+0436 DDFA             98             DJNZ R5,D1
+0438 22               99             RET
+                     100             
+                     101     
+0439                 102     delay_1s:
+0439 7D64            103             MOV R5,#100
+043B                 104       D2:   
+043B 7E19            105         MOV R6,#25
+043D DEFE            106             DJNZ R6,$
+043F DDFA            107             DJNZ R5,D2
+0441 22              108             RET
+                     109             END
+A51 MACRO ASSEMBLER  SEG_EQU                                                              03/25/2016 07:26:58 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ADCDH. . . . . . .  D ADDR   00ABH   A   
+ADTKDT . . . . . .  D ADDR   00AAH   A   
+AUX1 . . . . . . .  D ADDR   00F8H   A   
+CFGWL. . . . . . .  D ADDR   00F7H   A   
+CHSEL. . . . . . .  D ADDR   00AEH   A   
+CLKCON . . . . . .  D ADDR   00D8H   A   
+D1 . . . . . . . .  C ADDR   0432H   A   
+D2 . . . . . . . .  C ADDR   043BH   A   
+DELAY_1S . . . . .  C ADDR   0439H   A   
+DELAY_FAST . . . .  C ADDR   0430H   A   
+INTE1. . . . . . .  D ADDR   00A9H   A   
+INTFLG . . . . . .  D ADDR   0095H   A   
+IP1. . . . . . . .  D ADDR   00BAH   A   
+IP1H . . . . . . .  D ADDR   00BBH   A   
+IPH. . . . . . . .  D ADDR   00B9H   A   
+LCDCON . . . . . .  D ADDR   00B1H   A   
+LCDCON2. . . . . .  D ADDR   00B2H   A   
+LCDPIN . . . . . .  D ADDR   00B3H   A   
+LED_TABLE. . . . .  C ADDR   0400H   A   
+OPTION . . . . . .  D ADDR   0094H   A   
+P0 . . . . . . . .  D ADDR   0080H   A   
+P0OE . . . . . . .  D ADDR   0091H   A   
+P1MODH . . . . . .  D ADDR   00A3H   A   
+P1MODL . . . . . .  D ADDR   00A2H   A   
+P1WKUP . . . . . .  D ADDR   0096H   A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+P2OE . . . . . . .  D ADDR   0093H   A   
+P3MODH . . . . . .  D ADDR   00A5H   A   
+P3MODL . . . . . .  D ADDR   00A4H   A   
+P4 . . . . . . . .  D ADDR   00E8H   A   
+P4MOD. . . . . . .  D ADDR   0092H   A   
+P5 . . . . . . . .  D ADDR   00C0H   A   
+PINMOD . . . . . .  D ADDR   00A6H   A   
+PWM0DH . . . . . .  D ADDR   009BH   A   
+PWM0PRD. . . . . .  D ADDR   009AH   A   
+PWM1DH . . . . . .  D ADDR   009DH   A   
+PWM1PRD. . . . . .  D ADDR   009CH   A   
+PWMCON . . . . . .  D ADDR   00A1H   A   
+RCP2H. . . . . . .  D ADDR   00CBH   A   
+RCP2L. . . . . . .  D ADDR   00CAH   A   
+S1 . . . . . . . .  C ADDR   041FH   A   
+S2 . . . . . . . .  C ADDR   0421H   A   
+SPCON. . . . . . .  D ADDR   00BCH   A   
+SPDAT. . . . . . .  D ADDR   00BEH   A   
+SPSTA. . . . . . .  D ADDR   00BDH   A   
+START. . . . . . .  C ADDR   040DH   A   
+SWCMD. . . . . . .  D ADDR   0097H   A   
+T2CON. . . . . . .  D ADDR   00C8H   A   
+TH2. . . . . . . .  D ADDR   00CDH   A   
+TKCON. . . . . . .  D ADDR   00ADH   A   
+TKDL . . . . . . .  D ADDR   00ACH   A   
+TL2. . . . . . . .  D ADDR   00CCH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

@@ -1,0 +1,393 @@
+<html>
+<body>
+<pre>
+<h1>猩ision Build Log</h1>
+<h2>Project:</h2>
+D:\FCU_微處理機\Homework\Lab1\Lab1.uvproj
+Project File Date:  03/16/2016
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1123
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 101 bytes programmed.
+Flash Verify Done: 101 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1097
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 75 bytes programmed.
+Flash Verify Done: 75 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1097
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 75 bytes programmed.
+Flash Verify Done: 75 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1097
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 75 bytes programmed.
+Flash Verify Done: 75 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1095
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 73 bytes programmed.
+Flash Verify Done: 73 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1095
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 73 bytes programmed.
+Flash Verify Done: 73 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1081
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 59 bytes programmed.
+Flash Verify Done: 59 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1081
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 59 bytes programmed.
+Flash Verify Done: 59 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1083
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 61 bytes programmed.
+Flash Verify Done: 61 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1083
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=8.0 xdata=0 code=1083
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=8.0 xdata=0 code=1083
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=8.0 xdata=0 code=1083
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=8.0 xdata=0 code=1083
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 61 bytes programmed.
+Flash Verify Done: 61 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1083
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 61 bytes programmed.
+Flash Verify Done: 61 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1095
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 73 bytes programmed.
+Flash Verify Done: 73 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1095
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 73 bytes programmed.
+Flash Verify Done: 73 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1075
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 53 bytes programmed.
+Flash Verify Done: 53 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1075
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 53 bytes programmed.
+Flash Verify Done: 53 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+..\Lab2\SEG_EQU.asm(63): warning A73: TEXT FOUND BEYOND END STATEMENT - IGNORED
+linking...
+Program Size: data=8.0 xdata=0 code=1076
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 1 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 54 bytes programmed.
+Flash Verify Done: 54 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+..\Lab2\SEG_EQU.asm(63): warning A73: TEXT FOUND BEYOND END STATEMENT - IGNORED
+linking...
+Program Size: data=8.0 xdata=0 code=1076
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 1 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 54 bytes programmed.
+Flash Verify Done: 54 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+..\Lab2\SEG_EQU.asm(65): warning A73: TEXT FOUND BEYOND END STATEMENT - IGNORED
+linking...
+Program Size: data=8.0 xdata=0 code=1080
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 1 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 58 bytes programmed.
+Flash Verify Done: 58 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+..\Lab2\SEG_EQU.asm(65): warning A73: TEXT FOUND BEYOND END STATEMENT - IGNORED
+linking...
+Program Size: data=8.0 xdata=0 code=1080
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 1 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 58 bytes programmed.
+Flash Verify Done: 58 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+..\Lab2\SEG_EQU.asm(31): error A45: UNDEFINED SYMBOL (PASS-2)
+..\Lab2\SEG_EQU.asm(37): error A45: UNDEFINED SYMBOL (PASS-2)
+..\Lab2\SEG_EQU.asm(65): warning A73: TEXT FOUND BEYOND END STATEMENT - IGNORED
+Target not created
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+..\Lab2\SEG_EQU.asm(67): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+Target not created
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1089
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 67 bytes programmed.
+Flash Verify Done: 67 bytes verified.
+Done!
+Build target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1079
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 57 bytes programmed.
+Flash Verify Done: 57 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1079
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 57 bytes programmed.
+Flash Verify Done: 57 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1074
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 52 bytes programmed.
+Flash Verify Done: 52 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1074
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 52 bytes programmed.
+Flash Verify Done: 52 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1072
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 50 bytes programmed.
+Flash Verify Done: 50 bytes verified.
+Done!
+Build target 'Target 1'
+linking...
+Program Size: data=8.0 xdata=0 code=1072
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=8.0 xdata=0 code=1072
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=8.0 xdata=0 code=1072
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=8.0 xdata=0 code=1072
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1074
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 52 bytes programmed.
+Flash Verify Done: 52 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1090
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 68 bytes programmed.
+Flash Verify Done: 68 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1090
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 68 bytes programmed.
+Flash Verify Done: 68 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1093
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 71 bytes programmed.
+Flash Verify Done: 71 bytes verified.
+Done!
+Rebuild target 'Target 1'
+assembling SEG_EQU.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1090
+creating hex file from "Lab1"...
+"Lab1" - 0 Error(s), 0 Warning(s).
+Load "D:\\FCU_微處理機\\Homework\\Lab1\\Lab1" 
+Flash Erase Done.
+Flash Write Done: 68 bytes programmed.
+Flash Verify Done: 68 bytes verified.
+Done!

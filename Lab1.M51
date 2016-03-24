@@ -1,0 +1,125 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        03/25/2016  07:26:58  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE .\SEG_EQU.obj TO Lab1 RAMSIZE (256) CODE (0X00-0X32, 0X36-0X3FFD) XDATA (0X00-0X32, 0X36-0X3D00
+>> )
+
+
+INPUT MODULES INCLUDED:
+  .\SEG_EQU.obj (SEG_EQU)
+
+
+LINK MAP OF MODULE:  Lab1 (SEG_EQU)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0442H     ABSOLUTE     
+
+
+
+SYMBOL TABLE OF MODULE:  Lab1 (SEG_EQU)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        SEG_EQU
+  D:00ABH         SYMBOL        ADCDH
+  D:00AAH         SYMBOL        ADTKDT
+  D:00F8H         SYMBOL        AUX1
+  D:00F7H         SYMBOL        CFGWL
+  D:00AEH         SYMBOL        CHSEL
+  D:00D8H         SYMBOL        CLKCON
+  C:0432H         SYMBOL        D1
+  C:043BH         SYMBOL        D2
+  C:0439H         SYMBOL        DELAY_1S
+  C:0430H         SYMBOL        DELAY_FAST
+  D:00A9H         SYMBOL        INTE1
+  D:0095H         SYMBOL        INTFLG
+  D:00BAH         SYMBOL        IP1
+  D:00BBH         SYMBOL        IP1H
+  D:00B9H         SYMBOL        IPH
+  D:00B1H         SYMBOL        LCDCON
+  D:00B2H         SYMBOL        LCDCON2
+  D:00B3H         SYMBOL        LCDPIN
+  C:0400H         SYMBOL        LED_TABLE
+  D:0094H         SYMBOL        OPTION
+  D:0080H         SYMBOL        P0
+  D:0091H         SYMBOL        P0OE
+  D:00A3H         SYMBOL        P1MODH
+  D:00A2H         SYMBOL        P1MODL
+  D:0096H         SYMBOL        P1WKUP
+  D:00A0H         SYMBOL        P2
+  D:0093H         SYMBOL        P2OE
+  D:00A5H         SYMBOL        P3MODH
+  D:00A4H         SYMBOL        P3MODL
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/25/2016  07:26:58  PAGE 2
+
+
+  D:00E8H         SYMBOL        P4
+  D:0092H         SYMBOL        P4MOD
+  D:00C0H         SYMBOL        P5
+  D:00A6H         SYMBOL        PINMOD
+  D:009BH         SYMBOL        PWM0DH
+  D:009AH         SYMBOL        PWM0PRD
+  D:009DH         SYMBOL        PWM1DH
+  D:009CH         SYMBOL        PWM1PRD
+  D:00A1H         SYMBOL        PWMCON
+  D:00CBH         SYMBOL        RCP2H
+  D:00CAH         SYMBOL        RCP2L
+  C:041FH         SYMBOL        S1
+  C:0421H         SYMBOL        S2
+  D:00BCH         SYMBOL        SPCON
+  D:00BEH         SYMBOL        SPDAT
+  D:00BDH         SYMBOL        SPSTA
+  C:040DH         SYMBOL        START
+  D:0097H         SYMBOL        SWCMD
+  D:00C8H         SYMBOL        T2CON
+  D:00CDH         SYMBOL        TH2
+  D:00ADH         SYMBOL        TKCON
+  D:00ACH         SYMBOL        TKDL
+  D:00CCH         SYMBOL        TL2
+  C:0000H         LINE#         4
+  C:040AH         LINE#         20
+  C:040DH         LINE#         23
+  C:0410H         LINE#         24
+  C:0413H         LINE#         25
+  C:0416H         LINE#         26
+  C:0419H         LINE#         27
+  C:041CH         LINE#         30
+  C:041FH         LINE#         32
+  C:0421H         LINE#         34
+  C:0423H         LINE#         36
+  C:0426H         LINE#         38
+  C:0427H         LINE#         40
+  C:0429H         LINE#         41
+  C:042BH         LINE#         42
+  C:042CH         LINE#         43
+  C:042EH         LINE#         45
+  C:0430H         LINE#         48
+  C:0432H         LINE#         50
+  C:0434H         LINE#         51
+  C:0436H         LINE#         52
+  C:0438H         LINE#         53
+  C:0439H         LINE#         57
+  C:043BH         LINE#         59
+  C:043DH         LINE#         60
+  C:043FH         LINE#         61
+  C:0441H         LINE#         62
+  -------         ENDMOD        SEG_EQU
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0044H BYTE ( 3%) *
+******************************************************************************
+
+Program Size: data=8.0 xdata=0 code=1090
+BL51 BANKED LINKER/LOCATER V6.22                                                      03/25/2016  07:26:58  PAGE 3
+
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
