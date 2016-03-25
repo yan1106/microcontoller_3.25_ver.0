@@ -1,0 +1,494 @@
+A51 MACRO ASSEMBLER  4X4_KEYPAD                                                           03/25/2016 11:29:01 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02b
+NO OBJECT MODULE REQUESTED
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE 4x4 KeyPad.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;¦¹µ{¦¡¬O«ö«öÁä§â¼Æ¦rÅã¥Ü¦b¨âÁû¤C¬qÅã¥Ü¾¹¤W­±
+                       2     ;P0±µ¨ì¼Ò²ÕM6¥Î¨Ó±±¨î¨âÁû¤C¬qÅã¥Ü¾¹
+                       3     ;P3±µ¨ì¼Ò²ÕM9¥Î¨Ó±±¨î«öÁä
+                       4     ;#include "tx3703.inc"
+                +1     5     
+                +1     6     
+                +1     7     
+  0091          +1     8             P0OE    DATA    0x91
+  0092          +1     9             P4MOD   DATA    0x92
+  0093          +1    10             P2OE    DATA    0x93
+  0094          +1    11             OPTION  DATA    0x94
+  0095          +1    12             INTFLG  DATA    0x95
+  0096          +1    13             P1WKUP  DATA    0x96
+  0097          +1    14             SWCMD   DATA    0x97
+  009A          +1    15             PWM0PRD DATA    0x9A
+  009B          +1    16             PWM0DH  DATA    0x9B
+  009C          +1    17             PWM1PRD DATA    0x9C
+  009D          +1    18             PWM1DH  DATA    0x9D
+  00A1          +1    19             PWMCON  DATA    0xA1
+  00A2          +1    20             P1MODL  DATA    0xA2
+  00A3          +1    21             P1MODH  DATA    0xA3
+  00A4          +1    22             P3MODL  DATA    0xA4
+  00A5          +1    23             P3MODH  DATA    0xA5
+  00A6          +1    24             PINMOD  DATA    0xA6
+  00A9          +1    25             INTE1   DATA    0xA9
+  00AA          +1    26             ADTKDT  DATA    0xAA
+  00AB          +1    27             ADCDH   DATA    0xAB
+  00AC          +1    28             TKDL    DATA    0xAC
+  00AD          +1    29             TKCON   DATA    0xAD
+  00AE          +1    30             CHSEL   DATA    0xAE
+  00B1          +1    31             LCDCON  DATA    0xB1
+  00B2          +1    32             LCDCON2 DATA    0xB2
+  00B3          +1    33             LCDPIN  DATA    0xB3
+  00B9          +1    34             IPH             DATA    0xB9
+  00BA          +1    35             IP1             DATA    0xBA
+  00BB          +1    36             IP1H    DATA    0xBB
+  00BC          +1    37             SPCON   DATA    0xBC
+  00BD          +1    38             SPSTA   DATA    0xBD
+  00BE          +1    39             SPDAT   DATA    0xBE
+  00C0          +1    40             P5              DATA    0xC0
+  00C8          +1    41             T2CON   DATA    0xC8
+  00CA          +1    42             RCP2L   DATA    0xCA
+  00CB          +1    43             RCP2H   DATA    0xCB
+  00CC          +1    44             TL2             DATA    0xCC
+  00CD          +1    45             TH2             DATA    0xCD
+  00D8          +1    46             CLKCON  DATA    0xD8
+  00E8          +1    47             P4              DATA    0xE8
+  00F7          +1    48             CFGWL   DATA    0xF7
+  00F8          +1    49             AUX1    DATA    0xF8
+                      50     
+                      51     
+  0020                52     digit1 equ 20h          ;¤C¬qÅã¥Ü¾¹¼Æ¦r¤@
+  0021                53     digit2 equ 21h          ;¤C¬qÅã¥Ü¾¹¼Æ¦r¤G
+  0000                54     digit3 equ 00h
+  0000                55     X       equ     00H
+  0000                56     Y       equ     00H
+  0001                57     sign equ 1B
+                      58     
+A51 MACRO ASSEMBLER  4X4_KEYPAD                                                           03/25/2016 11:29:01 PAGE     2
+
+0000                  59     org 00h
+                      60     
+0000 8100             61     ajmp Start
+                      62     
+0400                  63     org 400h
+0400                  64     Start:
+                      65     
+0400 B188             66             acall IO
+0402 7520F0           67             mov digit1,#0f0h
+0405 7521F0           68             mov digit2,#0f0h
+0408 B175             69     S1:     acall ShowDigits
+                      70             
+                      71             ; ÀË¬d¬O§_¦³«öÁä³Q«ö¤U
+040A                  72     CheckKey: 
+040A 75B0FF           73             mov p3,#0ffh    ;²M°£«öÁäª¬ºA
+040D 75B00F           74             mov p3,#00fh    ;±NÁä½L¦C¦ì§}(bits4~7)ÅÜ¦¨§C¹q¦ì¡B±NÁä½L¦æ¦ì§}(bits0~3)ÅÜ¦¨°ª¹q¦ì
+0410 00               75             nop                             ;¼È¦s¾¹¦s¨ú½w½Ä
+0411 00               76             nop
+0412 00               77             nop
+0413 00               78             nop
+0414 00               79             nop
+0415 E5B0             80             mov A,p3                ;Åª¨úÁä½Lª¬ºA¡A¨S«öÁäÀ³¬O0FH
+0417 24F0             81             add A,#0f0h             ;+F0H
+0419 04               82             inc A                   ;²Ö¥[¾¹A¥[¤@¡A¦p¨S«öÁä=0
+041A 60EC             83             jz  S1                  ;§PÂ_²Ö¥[¾¹A¬O§_=0;¨S«öÁä(A=0)¡A¦^¨ìS1;¦³«öÁä«h°õ¦æ¤U¦æ«ü¥O
+041C 811E             84             ajmp DeNoise    ;¦³«öÁä¡A¸õ¨ìDeNoise¥h°£¼u¸õ
+                      85                     
+                      86     
+                      87             ; ¥h°£¼u¸õ
+041E                  88     DeNoise: 
+041E B198             89             acall delay 
+                      90             ;¦A¦¸ÀË¬d¬O§_¦³«öÁä³Q«ö¤U
+0420 75B0FF           91             mov p3,#0ffh    ;²M°£«öÁäª¬ºA
+0423 75B00F           92             mov p3,#00fh    ;±NÁä½L¦C¦ì§}(bits4~7)ÅÜ¦¨§C¹q¦ì¡B±NÁä½L¦æ¦ì§}(bits0~3)ÅÜ¦¨°ª¹q¦ì
+0426 00               93             nop                             ;¼È¦s¾¹¦s¨ú½w½Ä
+0427 00               94             nop
+0428 00               95             nop
+0429 00               96             nop
+042A 00               97             nop
+042B E5B0             98             mov A,p3                ;Åª¨úÁä½Lª¬ºA¡A¨S«öÁäÀ³¬O0FH
+042D 24F0             99             add A,#0f0h     ;+F0H
+042F 04              100             inc A                   ;²Ö¥[¾¹A¥[¤@¡A¦p¨S«öÁä=0
+0430 60D6            101             jz S1                   ;§PÂ_²Ö¥[¾¹A¬O§_=0;¨S«öÁä(A=0)¡A¦^¨ìS1;¦³«öÁä«h°õ¦æ¤U¦æ«ü¥O
+0432 8134            102             ajmp Row1               ;¦³«öÁä¡A¨ìRow1ÀË¬d«ö¤F¤°»òÁä
+                     103             
+0434                 104     Row1: ; ÀË¬d²Ä¤@¦C¬O§_¦³«öÁä³Q«ö¤U
+0434 75B0FF          105             mov p3,#0ffh            ;²M°£«öÁäª¬ºA
+0437 75B0EF          106             mov p3,#0efh            ;±NÁä½L²Ä¤@¦C(bit 4)ÅÜ¦¨§C¹q¦ì
+043A 00              107             nop                                     ;¼È¦s¾¹¦s¨ú½w½Ä
+043B 00              108             nop
+043C 00              109             nop
+043D 00              110             nop
+043E 00              111             nop
+043F E5B0            112             mov A,p3                        ;Åª¨úÁä½Lª¬ºA¡A¨S«öÁäÀ³¬Oefh
+0441 2410            113             add A,#10h                      ;+10h
+0443 04              114             inc A                           ;²Ö¥[¾¹A¥[¤@¡A¦p¨S«öÁä=0
+0444 603D            115             jz Row2                         ;§PÂ_²Ö¥[¾¹A¬O§_=0;¨S«öÁä¡AÀË¬d²Ä¤G¦C;¦³«öÁä«h°õ¦æ¤
+                             U¦æ«ü¥O
+0446 8148            116             ajmp Key1                       ;¦³«öÁä¡AÀË¬d¬O§_«ö¤F'1'
+0448                 117     Key1: 
+0448 30B008          118             jnb p3.0,K1 
+044B                 119             mov digit3,#C1H 
+*** _____________________________________________^
+*** ERROR #A45 IN 119 (4x4 KeyPad.asm, LINE 73): UNDEFINED SYMBOL (PASS-2)
+044E 300123          120             JNB sign,temp;
+*** __________________________________________^
+A51 MACRO ASSEMBLER  4X4_KEYPAD                                                           03/25/2016 11:29:01 PAGE     3
+
+*** ERROR #A51 IN 120 (4x4 KeyPad.asm, LINE 74): TARGET OUT OF RANGE
+0451 815B            121             ajmp Key2                       ;'1'¨S³Q«ö¤U¡AÀË¬d¬O§_«ö¤F'2'
+0453                 122     K1:                                     ;'1'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°01
+0453 7520F1          123             mov  digit1,#0f1h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°2
+0456 7521F0          124             mov  digit2,#0f0h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°0
+0459 A15C            125             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶}
+                     126             
+045B                 127     Key2: 
+045B 30B105          128             jnb p3.1,K2
+045E                 129             mov digit3,#F2H 
+*** _____________________________________________^
+*** ERROR #A45 IN 129 (4x4 KeyPad.asm, LINE 83): UNDEFINED SYMBOL (PASS-2)
+                     130             
+0461 816B            131             ajmp Key3                       ;'2'¨S³Q«ö¤U¡AÀË¬d¬O§_«ö¤F'3'
+0463                 132     K2:                                     ;'2'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°02
+0463 7520F2          133             mov digit1,#0f2h        ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°2
+0466 7521F0          134             mov digit2,#0f0h        ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤G­Ó¼Æ¦r¬°0
+0469 A15C            135             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶}
+                     136             
+046B                 137     Key3: 
+046B 30B205          138             jnb p3.2,K3                     ;ÀË¬d'3'¬O§_³Q«ö¤U
+046E                 139             Mov digit3,#F3H         
+*** _____________________________________________^
+*** ERROR #A45 IN 139 (4x4 KeyPad.asm, LINE 93): UNDEFINED SYMBOL (PASS-2)
+0471 817B            140             ajmp KeyA                       ;'3'¨S³Q«ö¤U¡A©Ò¥H¬O'A'³Q«ö¤U
+0473                 141     K3:                                     ;'3'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°03
+0473 7520F3          142             mov digit1,#0f3h        ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°3
+0476 7521F0          143             mov digit2,#0f0h        ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤G­Ó¼Æ¦r¬°0
+0479 A15C            144             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶}   
+                     145             
+047B                 146     KeyA:                                   ;'A'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°10
+                     147             ;mov digit1,#0f0h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°0
+                     148             ;mov digit2,#0f1h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤G­Ó¼Æ¦r¬°1
+047B 850000          149             MOV X,digit3
+047E 850001          150             MOV sign,0B
+0481 A15C            151             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶}
+                     152             
+0483                 153     Row2:                                   ;ÀË¬d²Ä¤G¦C¬O§_¦³«öÁä³Q«ö¤U
+0483 75B0FF          154             mov p3,#0ffh            ;²M°£«öÁäª¬ºA
+0486 75B0DF          155             mov p3,#0dfh            ;±NÁä½L²Ä¤G¦C(bit 5)ÅÜ¦¨§C¹q¦ì
+0489 00              156             nop                                     ;¼È¦s¾¹¦s¨ú½w½Ä
+048A 00              157             nop
+048B 00              158             nop
+048C 00              159             nop
+048D 00              160             nop
+048E E5B0            161             mov A,p3                        ;Åª¨úÁä½Lª¬ºA¡A¨S«öÁäÀ³¬Odfh
+0490 2420            162             add A,#20h                      ;+20h
+0492 04              163             inc A                           ;²Ö¥[¾¹A¥[¤@¡A¦p¨S«öÁä=0
+0493 6038            164             jz Row3                         ;§PÂ_²Ö¥[¾¹A¬O§_=0;¨S«öÁä¡AÀË¬d²Ä¤T¦C;¦³«öÁä«h°õ¦æ¤U¦æ«ü¥O
+0495 8197            165             ajmp Key4                       ;¦³«öÁä¡AÀË¬d¬O§_«ö¤F'4'
+                     166             
+0497                 167     Key4:
+0497 30B005          168             jnb p3.0,K4             ;ÀË¬d'4'¬O§_³Q«ö¤U
+049A                 169             Mov digit3,#F4H 
+*** _____________________________________________^
+*** ERROR #A45 IN 169 (4x4 KeyPad.asm, LINE 123): UNDEFINED SYMBOL (PASS-2)
+049D 81A7            170             ajmp Key5                       ;'4'¨S³Q«ö¤U¡AÀË¬d¬O§_«ö¤F'5'
+049F                 171     K4:                                     ;'4'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°04
+049F 7520F4          172             mov  digit1,#0f4h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°4
+04A2 7521F0          173             mov  digit2,#0f0h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°0
+04A5 A15C            174             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶} 
+                     175             
+04A7                 176     Key5: 
+04A7 30B105          177             jnb p3.1,K5             ;ÀË¬d'5'¬O§_³Q«ö¤U
+04AA                 178             Mov digit3,#F5H 
+*** _____________________________________________^
+A51 MACRO ASSEMBLER  4X4_KEYPAD                                                           03/25/2016 11:29:01 PAGE     4
+
+*** ERROR #A45 IN 178 (4x4 KeyPad.asm, LINE 132): UNDEFINED SYMBOL (PASS-2)
+04AD 81B7            179             ajmp Key6                       ;'5'¨S³Q«ö¤U¡AÀË¬d¬O§_«ö¤F'6'
+04AF                 180     K5:                                     ;'5'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°05
+04AF 7520F5          181             mov  digit1,#0f5h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°5
+04B2 7521F0          182             mov  digit2,#0f0h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°0
+04B5 A15C            183             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶} 
+                     184             
+04B7                 185     Key6: 
+04B7 30B205          186             jnb p3.2,K6             ;ÀË¬d'6'¬O§_³Q«ö¤U
+04BA                 187             Mov digit3,#F6H         
+*** _____________________________________________^
+*** ERROR #A45 IN 187 (4x4 KeyPad.asm, LINE 141): UNDEFINED SYMBOL (PASS-2)
+04BD 81C7            188             ajmp KeyB                       ;'6'¨S³Q«ö¤U¡AÀË¬d¬O§_«ö¤F'B'
+04BF                 189     K6:                                     ;'6'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°06
+04BF 7520F6          190             mov  digit1,#0f6h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°6
+04C2 7521F0          191             mov  digit2,#0f0h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°0
+04C5 A15C            192             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶} 
+                     193             
+04C7                 194     KeyB:                                   ;'B'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°11 
+                     195             ;mov  digit1,#0f1h      ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°1
+                     196             ;mov  digit2,#0f1h      ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°1
+04C7 E500            197             MOV A,X;
+04C9 2500            198             ADD A,Y;
+04CB A15C            199             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶}
+                     200             
+04CD                 201     Row3:                                   ;ÀË¬d²Ä¤T¦C¬O§_¦³«öÁä³Q«ö¤U
+04CD 75B0FF          202             mov p3,#0ffh            ;²M°£«öÁäª¬ºA
+04D0 75B0BF          203             mov p3,#0bfh            ;±NÁä½L²Ä¤@¦C(bit 6)ÅÜ¦¨§C¹q¦ì
+04D3 00              204             nop                                     ;¼È¦s¾¹¦s¨ú½w½Ä
+04D4 00              205             nop
+04D5 00              206             nop
+04D6 00              207             nop
+04D7 00              208             nop
+04D8 E5B0            209             mov A,p3                        ;Åª¨úÁä½Lª¬ºA¡A¨S«öÁäÀ³¬Obfh
+04DA 2440            210             add A,#40h                      ;+40h
+04DC 04              211             inc A                           ;²Ö¥[¾¹A¥[¤@¡A¦p¨S«öÁä=0 
+04DD 603A            212             jz Row4                         ;§PÂ_²Ö¥[¾¹A¬O§_=0;¨S«öÁä¡AÀË¬d²Ä¥|¦C;¦³«öÁä«h°õ¦æ¤U¦æ«ü¥O
+04DF 81E1            213             ajmp Key7                       ;¦³«öÁä¡AÀË¬d¬O§_«ö¤F'7'
+04E1                 214     Key7:
+04E1 30B005          215             jnb p3.0,K7             ;ÀË¬d'7'¬O§_³Q«ö¤U
+04E4                 216             Mov digit3,#F7H 
+*** _____________________________________________^
+*** ERROR #A45 IN 216 (4x4 KeyPad.asm, LINE 170): UNDEFINED SYMBOL (PASS-2)
+04E7 81F1            217             ajmp Key8                       ;'7'¨S³Q«ö¤U¡AÀË¬d¬O§_«ö¤F'8'
+04E9                 218     K7:                                     ;'7'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°07
+04E9 7520F7          219             mov  digit1,#0f7h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°7
+04EC 7521F0          220             mov  digit2,#0f0h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°0
+04EF A15C            221             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶}
+04F1                 222     Key8:
+04F1 30B105          223             jnb p3.1,K8             ;ÀË¬d'8'¬O§_³Q«ö¤
+04F4                 224             mov digit3,#F8H 
+*** _____________________________________________^
+*** ERROR #A45 IN 224 (4x4 KeyPad.asm, LINE 178): UNDEFINED SYMBOL (PASS-2)
+                     225             
+04F7 A101            226             ajmp Key9                       ;'8'¨S³Q«ö¤U¡AÀË¬d¬O§_«ö¤F'9'
+04F9                 227     K8:                                     ;'8'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°08
+04F9 7520F8          228             mov  digit1,#0f8h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°8
+04FC 7521F0          229             mov  digit2,#0f0h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°0
+04FF A15C            230             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶}  
+0501                 231     Key9:
+0501 30B202          232             jnb p3.2,K9             ;ÀË¬d'9'¬O§_³Q«ö¤U
+0504 A111            233             ajmp KeyC                       ;'9'¨S³Q«ö¤U¡AÀË¬d¬O§_«ö¤F'C'
+0506                 234     K9:                                     ;'9'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°09
+0506 7520F9          235             mov  digit1,#0f9h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°9
+0509                 236             mov digit3,#F9H 
+*** _____________________________________________^
+A51 MACRO ASSEMBLER  4X4_KEYPAD                                                           03/25/2016 11:29:01 PAGE     5
+
+*** ERROR #A45 IN 236 (4x4 KeyPad.asm, LINE 190): UNDEFINED SYMBOL (PASS-2)
+050C 7521F0          237             mov  digit2,#0f0h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°0
+050F A15C            238             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶} 
+0511                 239     KeyC:                                   ;'C'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°12
+0511 7520F2          240             mov  digit1,#0f2h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°2
+0514 7521F1          241             mov  digit2,#0f1h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°1
+0517 A15C            242             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶}
+0519                 243     Row4:                                   ;ÀË¬d²Ä¥|¦C¬O§_¦³«öÁä³Q«ö¤U
+0519 75B0FF          244             mov p3,#0ffh            ;²M°£«öÁäª¬ºA
+051C 75B07F          245             mov p3,#07fh            ;±NÁä½L²Ä¤@¦C(bit 7)ÅÜ¦¨§C¹q¦ì
+051F 00              246             nop                                     ;¼È¦s¾¹¦s¨ú½w½Ä
+0520 00              247             nop
+0521 00              248             nop
+0522 00              249             nop
+0523 00              250             nop
+0524 E5B0            251             mov A,p3                        ;Åª¨úÁä½Lª¬ºA¡A¨S«öÁäÀ³¬Obfh
+0526 2408            252             add A,#8h                       ;+40h
+0528 04              253             inc A                           ;²Ö¥[¾¹A¥[¤@¡A¦p¨S«öÁä=0
+0529 6031            254             jz WaitRelease          ;§PÂ_²Ö¥[¾¹A¬O§_=0;¨S«öÁä¡Aµ¥«Ý«öÁä©ñ¶};¦³«öÁä«h°õ¦æ¤U¦æ«ü¥O
+052B A12D            255             ajmp Key99                      ;¦³«öÁä¡AÀË¬d¬O§_«ö¤F'*' 
+052D                 256     Key99:
+052D 30B002          257             jnb p3.0,K99            ;ÀË¬d'*'¬O§_³Q«ö¤U
+0530 A13A            258             ajmp Key0                       ;'*'¨S³Q«ö¤U¡AÀË¬d¬O§_«ö¤F'0'
+0532                 259     K99:                                    ;'*'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°99
+0532 7520F9          260             mov  digit1,#0f9h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°9
+0535 7521F9          261             mov  digit2,#0f9h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°9
+0538 A15C            262             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶} 
+053A                 263     Key0:
+053A 30B102          264             jnb p3.1,K0             ;ÀË¬d'0'¬O§_³Q«ö¤U
+053D A147            265             ajmp Key20                      ;'0'¨S³Q«ö¤U¡AÀË¬d¬O§_«ö¤F'#'
+053F                 266     K0:                                     ;'0'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°00
+053F 7520F0          267             mov  digit1,#0f0h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°0
+0542 7521F0          268             mov  digit2,#0f0h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°0
+0545 A15C            269             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶} 
+0547                 270     Key20:
+0547 30B202          271             jnb p3.2,K20            ;ÀË¬d'#'¬O§_³Q«ö¤U
+054A A154            272             ajmp KeyD                       ;'#'¨S³Q«ö¤U¡AÀË¬d¬O§_«ö¤F'D'
+054C                 273     K20:                                    ;'20'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°20
+054C 7520F0          274             mov  digit1,#0f0h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°0
+054F 7521F2          275             mov  digit2,#0f2h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°2
+0552 A15C            276             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶} 
+0554                 277     KeyD:                                   ;'D'³Q«ö¤U¡A³]©w¤C¬qÅã¥Ü¾¹¬°13
+0554 7520F3          278             mov  digit1,#0f3h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°3
+0557 7521F1          279             mov  digit2,#0f1h       ;³]©w¤C¬qÅã¥Ü¾¹ªº²Ä¤@­Ó¼Æ¦r¬°1
+055A A15C            280             ajmp WaitRelease        ;µ¥«Ý«öÁä©ñ¶}
+                     281             
+                     282     ; µ¥«Ý¨Ï¥ÎªÌ©ñ¶}«öÁä
+055C                 283     WaitRelease: 
+055C B175            284             acall ShowDigits        ;Åã¥Ü¤C¬qÅã¥Ü¾¹¤º®e
+055E 75B0FF          285             mov p3,#0ffh            ;²M°£«öÁäª¬ºA
+0561 75B00F          286             mov p3,#0fh             ;±N0fh¼g¤JPDD
+0564 00              287             nop                                     ;¼È¦s¾¹¦s¨ú½w½Ä
+0565 00              288             nop
+0566 00              289             nop
+0567 00              290             nop
+0568 00              291             nop
+0569 E5B0            292             mov A,p3                        ;Åª¨úÁä½Lª¬ºA¡A­Y©ñ¶}«öÁäÀ³¬O0fh
+056B 24F0            293             add A,#0f0h                     ;+f0h
+056D 04              294             inc A                           ;¨ú±o«öÁäª¬ºA¡A­Y©ñ¶}«öÁäÀ³¬Offh; ­Y«öÁäª¬ºA+1µ¥©ó0¡Aªí¥Ü©ñ¶}«öÁä
+056E 6002            295             jz S11                          ;¦^¨ìS1
+0570 A15C            296             ajmp WaitRelease        ;¨S©ñ¶}«öÁä¡AÄ~Äòµ¥«Ý
+0572                 297     S11:
+0572 8108            298             ajmp S1;¦^¨ìS1
+                     299             
+                     300     
+0574                 301     temp:
+A51 MACRO ASSEMBLER  4X4_KEYPAD                                                           03/25/2016 11:29:01 PAGE     6
+
+0574                 302         MOV,Y,digit3
+*** ________________________________^
+*** ERROR #A15 IN 302 (4x4 KeyPad.asm, LINE 256): MISSING FACTOR
+0574 22              303             RET
+                     304             
+                     305             
+                     306             
+0575                 307     ShowDigits: 
+                     308                                                     ;Åã¥Ü¤C¬qÅã¥Ü¾¹²Ä¤@­Ó¼Æ¦r
+0575 850080          309             mov P0,X                ;¿é¥X²Ä¤@­Ó¼Æ¦rªº¤º®e
+0578 C284            310             clr P0.4                        ;±N²Ä¤@­Ó¤C¬qÅã¥Ü¾¹ÂI«G
+057A B198            311             acall delay             ;µ¥«Ý5ms
+057C D284            312             setb P0.4                       ;±N²Ä¤@­Ó¤C¬qÅã¥Ü¾¹Ãö±¼
+                     313                                                     ;Åã¥Ü¤C¬qÅã¥Ü¾¹²Ä¤G­Ó¼Æ¦r
+057E 850080          314             mov P0,Y        ;¿é¥X²Ä¤G­Ó¼Æ¦rªº¤º®e
+0581 C285            315             clr P0.5                        ;±N²Ä¤G­Ó¤C¬qÅã¥Ü¾¹ÂI«G
+0583 B198            316             acall delay             ;µ¥«Ý5ms
+0585 D285            317             setb P0.5                       ;±N²Ä¤G­Ó¤C¬qÅã¥Ü¾¹Ãö±¼
+0587 22              318             ret                             ;ªð¦^¥Dµ{¦¡
+                     319     
+0588                 320     IO:                                             ;³]©wIO¥H¤Îªì©l­È
+0588 7591FF          321             mov p0oe,#11111111b     ;³]©wP0¬°CMOS¿é¥X
+058B 758000          322             mov p0,#00000000b
+058E 75A400          323             mov p3modl,#00000000b ;³]©wP3.0~3¬°pull up input  ;20140123 debug
+0591 75A5AA          324             mov p3modh,#10101010b ;³]©wP3.4~7¬°CMOS output    ;20140123 debug
+0594 75B0FF          325             mov p3,#11111111b
+0597 22              326             ret
+0598                 327     delay:
+0598 7D0A            328             MOV R5,#10
+059A 7E14            329     D1:     MOV R6,#20
+059C DEFE            330             DJNZ R6,$
+059E DDFA            331             DJNZ R5,D1
+05A0 22              332             RET     
+                     333     
+                     334             END
+A51 MACRO ASSEMBLER  4X4_KEYPAD                                                           03/25/2016 11:29:01 PAGE     7
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ADCDH. . . . . . .  D ADDR   00ABH   A   
+ADTKDT . . . . . .  D ADDR   00AAH   A   
+AUX1 . . . . . . .  D ADDR   00F8H   A   
+C1H. . . . . . . .    ----   -----       
+CFGWL. . . . . . .  D ADDR   00F7H   A   
+CHECKKEY . . . . .  C ADDR   040AH   A   
+CHSEL. . . . . . .  D ADDR   00AEH   A   
+CLKCON . . . . . .  D ADDR   00D8H   A   
+D1 . . . . . . . .  C ADDR   059AH   A   
+DELAY. . . . . . .  C ADDR   0598H   A   
+DENOISE. . . . . .  C ADDR   041EH   A   
+DIGIT1 . . . . . .  N NUMB   0020H   A   
+DIGIT2 . . . . . .  N NUMB   0021H   A   
+DIGIT3 . . . . . .  N NUMB   0000H   A   
+F2H. . . . . . . .    ----   -----       
+F3H. . . . . . . .    ----   -----       
+F4H. . . . . . . .    ----   -----       
+F5H. . . . . . . .    ----   -----       
+F6H. . . . . . . .    ----   -----       
+F7H. . . . . . . .    ----   -----       
+F8H. . . . . . . .    ----   -----       
+F9H. . . . . . . .    ----   -----       
+INTE1. . . . . . .  D ADDR   00A9H   A   
+INTFLG . . . . . .  D ADDR   0095H   A   
+IO . . . . . . . .  C ADDR   0588H   A   
+IP1. . . . . . . .  D ADDR   00BAH   A   
+IP1H . . . . . . .  D ADDR   00BBH   A   
+IPH. . . . . . . .  D ADDR   00B9H   A   
+K0 . . . . . . . .  C ADDR   053FH   A   
+K1 . . . . . . . .  C ADDR   0453H   A   
+K2 . . . . . . . .  C ADDR   0463H   A   
+K20. . . . . . . .  C ADDR   054CH   A   
+K3 . . . . . . . .  C ADDR   0473H   A   
+K4 . . . . . . . .  C ADDR   049FH   A   
+K5 . . . . . . . .  C ADDR   04AFH   A   
+K6 . . . . . . . .  C ADDR   04BFH   A   
+K7 . . . . . . . .  C ADDR   04E9H   A   
+K8 . . . . . . . .  C ADDR   04F9H   A   
+K9 . . . . . . . .  C ADDR   0506H   A   
+K99. . . . . . . .  C ADDR   0532H   A   
+KEY0 . . . . . . .  C ADDR   053AH   A   
+KEY1 . . . . . . .  C ADDR   0448H   A   
+KEY2 . . . . . . .  C ADDR   045BH   A   
+KEY20. . . . . . .  C ADDR   0547H   A   
+KEY3 . . . . . . .  C ADDR   046BH   A   
+KEY4 . . . . . . .  C ADDR   0497H   A   
+KEY5 . . . . . . .  C ADDR   04A7H   A   
+KEY6 . . . . . . .  C ADDR   04B7H   A   
+KEY7 . . . . . . .  C ADDR   04E1H   A   
+KEY8 . . . . . . .  C ADDR   04F1H   A   
+KEY9 . . . . . . .  C ADDR   0501H   A   
+KEY99. . . . . . .  C ADDR   052DH   A   
+KEYA . . . . . . .  C ADDR   047BH   A   
+KEYB . . . . . . .  C ADDR   04C7H   A   
+KEYC . . . . . . .  C ADDR   0511H   A   
+KEYD . . . . . . .  C ADDR   0554H   A   
+LCDCON . . . . . .  D ADDR   00B1H   A   
+LCDCON2. . . . . .  D ADDR   00B2H   A   
+LCDPIN . . . . . .  D ADDR   00B3H   A   
+OPTION . . . . . .  D ADDR   0094H   A   
+A51 MACRO ASSEMBLER  4X4_KEYPAD                                                           03/25/2016 11:29:01 PAGE     8
+
+P0 . . . . . . . .  D ADDR   0080H   A   
+P0OE . . . . . . .  D ADDR   0091H   A   
+P1MODH . . . . . .  D ADDR   00A3H   A   
+P1MODL . . . . . .  D ADDR   00A2H   A   
+P1WKUP . . . . . .  D ADDR   0096H   A   
+P2OE . . . . . . .  D ADDR   0093H   A   
+P3 . . . . . . . .  D ADDR   00B0H   A   
+P3MODH . . . . . .  D ADDR   00A5H   A   
+P3MODL . . . . . .  D ADDR   00A4H   A   
+P4 . . . . . . . .  D ADDR   00E8H   A   
+P4MOD. . . . . . .  D ADDR   0092H   A   
+P5 . . . . . . . .  D ADDR   00C0H   A   
+PINMOD . . . . . .  D ADDR   00A6H   A   
+PWM0DH . . . . . .  D ADDR   009BH   A   
+PWM0PRD. . . . . .  D ADDR   009AH   A   
+PWM1DH . . . . . .  D ADDR   009DH   A   
+PWM1PRD. . . . . .  D ADDR   009CH   A   
+PWMCON . . . . . .  D ADDR   00A1H   A   
+RCP2H. . . . . . .  D ADDR   00CBH   A   
+RCP2L. . . . . . .  D ADDR   00CAH   A   
+ROW1 . . . . . . .  C ADDR   0434H   A   
+ROW2 . . . . . . .  C ADDR   0483H   A   
+ROW3 . . . . . . .  C ADDR   04CDH   A   
+ROW4 . . . . . . .  C ADDR   0519H   A   
+S1 . . . . . . . .  C ADDR   0408H   A   
+S11. . . . . . . .  C ADDR   0572H   A   
+SHOWDIGITS . . . .  C ADDR   0575H   A   
+SIGN . . . . . . .  N NUMB   0001H   A   
+SPCON. . . . . . .  D ADDR   00BCH   A   
+SPDAT. . . . . . .  D ADDR   00BEH   A   
+SPSTA. . . . . . .  D ADDR   00BDH   A   
+START. . . . . . .  C ADDR   0400H   A   
+SWCMD. . . . . . .  D ADDR   0097H   A   
+T2CON. . . . . . .  D ADDR   00C8H   A   
+TEMP . . . . . . .  C ADDR   0574H   A   
+TH2. . . . . . . .  D ADDR   00CDH   A   
+TKCON. . . . . . .  D ADDR   00ADH   A   
+TKDL . . . . . . .  D ADDR   00ACH   A   
+TL2. . . . . . . .  D ADDR   00CCH   A   
+WAITRELEASE. . . .  C ADDR   055CH   A   
+X. . . . . . . . .  N NUMB   0000H   A   
+Y. . . . . . . . .  N NUMB   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 11 ERROR(S)
